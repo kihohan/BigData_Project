@@ -6,8 +6,8 @@
 
 산업단지 빅데이터 아이디어 공모전  / 장려상 / 주관: 한국산업단지공단
 
-http://www.hellot.net/new_hellot/magazine/magazine_read.html?code=201&sub=004&idx=43740
+링크: http://www.hellot.net/new_hellot/magazine/magazine_read.html?code=201&sub=004&idx=43740
 
 빅데이터 소셜마케팅 분석보고서 공모전 / 대상 / 주관: (주)한국경제신문, 한국정보화진흥원
 
-https://www.hankyung.com/society/article/2019030789051
+링크: https://www.hankyung.com/society/article/2019030789051
