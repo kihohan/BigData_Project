@@ -1,0 +1,160 @@
+{\rtf1\ansi\ansicpg949\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset129 AppleSDGothicNeo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 import pandas as pd\
+\
+h_tags = pd.read_excel('/Users/hankiho/Desktop/
+\f1 \'b0\'f8\'b8\'f0\'c0\'fc
+\f0  
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'c0\'da\'b7\'e1
+\f0  
+\f1 \'b9\'d7
+\f0  
+\f1 \'b5\'a5\'c0\'cc\'c5\'cd
+\f0 /
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'b5\'a5\'c0\'cc\'c5\'cd
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8\'b1\'d7\'b7\'a5
+\f0  _
+\f1 \'c7\'d8\'bd\'ac\'c5\'c2\'b1\'d7
+\f0 _
+\f1 \'c5\'eb\'c7\'d5
+\f0 .xlsx')\
+\
+pd.value_counts(h_tags.values.flatten()).head(40) #
+\f1 \'b5\'a5\'c0\'cc\'c5\'cd\'c7\'c1\'b7\'b9\'c0\'d3
+\f0  
+\f1 \'c0\'fc\'c3\'bc
+\f0  
+\f1 \'bf\'e4\'bc\'d2\'b8\'a6
+\f0  
+\f1 \'c4\'ab\'bf\'ee\'c6\'ae
+\f0  
+\f1 \'c7\'d2
+\f0  
+\f1 \'bc\'f6
+\f0  
+\f1 \'c0\'d6\'b4\'d9
+\f0 .\
+h_tags2 = pd.read_csv('/Users/hankiho/Desktop/
+\f1 \'b0\'f8\'b8\'f0\'c0\'fc
+\f0  
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'c0\'da\'b7\'e1
+\f0  
+\f1 \'b9\'d7
+\f0  
+\f1 \'b5\'a5\'c0\'cc\'c5\'cd
+\f0 /
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'b5\'a5\'c0\'cc\'c5\'cd
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8
+\f0 /
+\f1 \'c0\'c7\'b9\'cc\'c0\'d6\'b4\'c2
+\f0  
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8\'c7\'d8\'bd\'ac\'c5\'c2\'b1\'d7
+\f0 .csv')\
+h_tags2.head(15)\
+\
+from pyecharts import Pie, Style\
+\
+attr = ['
+\f1 \'b9\'cc\'bc\'bc\'b8\'d5\'c1\'f6
+\f0 ','
+\f1 \'b9\'cc\'bc\'bc\'b8\'d5\'c1\'f6\'c1\'a6\'b0\'c5
+\f0 ','
+\f1 \'c1\'fd\'bd\'ba\'c5\'b8\'b1\'d7\'b7\'a5
+\f0 ','
+\f1 \'c8\'a5\'bc\'f6\'b0\'a1\'c0\'fc
+\f0 ','
+\f1 \'c0\'ce\'c5\'d7\'b8\'ae\'be\'ee
+\f0 ','
+\f1 \'b5\'a5\'c0\'cf\'b8\'ae
+\f0 ','
+\f1 \'b1\'b9\'b9\'ce\'c3\'bc\'c7\'e8\'b4\'dc
+\f0 ','
+\f1 \'b5\'e5\'b7\'b9\'bd\'ba\'b7\'eb
+\f0 ']\
+v1 = [298, 225, 199, 175, 174, 171, 167, 166]\
+\
+pie = Pie("
+\f1 \'bf\'a1\'be\'ee\'b5\'e5\'b7\'b9\'bc\'ad
+\f0  
+\f1 \'b0\'fc\'b7\'c3
+\f0  
+\f1 \'c7\'d8\'bd\'c3\'c5\'c2\'b1\'d7
+\f0 ", title_pos="right", width=600)\
+pie.add("C", attr, v1, center=[40, 50], is_random=True, \
+        radius=[30, 65], rosetype='radius',\
+        is_legend_show=False,is_label_show=True)\
+pie\
+\
+from pyecharts import Pie, Style\
+\
+attr = ['
+\f1 \'c0\'cf\'bb\'f3
+\f0 ','
+\f1 \'b9\'cc\'bc\'bc\'b8\'d5\'c1\'f6
+\f0 ','
+\f1 \'b0\'c7\'c1\'b6\'b1\'e2
+\f0 ','
+\f1 \'c0\'a3\'c6\'f7\'c0\'af
+\f0 ','
+\f1 \'c8\'a5\'bc\'f6\'b0\'a1\'c0\'fc
+\f0 ','
+\f1 \'c0\'ce\'c5\'d7\'b8\'ae\'be\'ee
+\f0 ']\
+v1 = [324, 175, 319, 226, 220, 298]\
+\
+pie = Pie("
+\f1 \'bd\'ba\'c5\'b8\'c0\'cf\'b7\'af
+\f0  
+\f1 \'b0\'fc\'b7\'c3
+\f0  
+\f1 \'c7\'d8\'bd\'c3\'c5\'c2\'b1\'d7
+\f0 ", title_pos="right", width=600)\
+pie.add("C", attr, v1, center=[50, 45], is_random=True, \
+        radius=[30, 65], rosetype='radius',\
+        is_legend_show=False,is_label_show=True)\
+pie\
+\
+import matplotlib.pyplot as plt\
+import squarify    \
+# If you have 2 lists\
+squarify.plot(sizes=[13,10,17,19,21,16,16,22], label=["
+\f1 \'c0\'ce\'c5\'d7\'b8\'ae\'be\'ee
+\f0 ", "
+\f1 \'be\'c6\'b7\'ce\'b8\'b6
+\f0 ", "
+\f1 \'bc\'d2\'c0\'bd
+\f0 ", "
+\f1 \'bd\'ba\'c6\'c0
+\f0 ", "
+\f1 \'bd\'c5\'c8\'a5\'c1\'fd
+\f0 ",\
+                                                     "
+\f1 \'b9\'cc\'bc\'bc\'b8\'d5\'c1\'f6
+\f0 ","
+\f1 \'c7\'ca\'c5\'cd
+\f0 ","
+\f1 \'be\'c8\'b0\'a8
+\f0 "], alpha=.7 )\
+plt.axis('off')\
+#save_img = '
+\f1 \'c6\'ae\'b8\'ae\'b8\'ca
+\f0 .png'\
+#plt.savefig(save_img)\
+plt.show()}

@@ -1,0 +1,105 @@
+{\rtf1\ansi\ansicpg949\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset129 AppleSDGothicNeo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 import requests\
+import time\
+import pandas as pd\
+import os\
+from selenium import webdriver\
+from bs4 import BeautifulSoup as bs\
+import urllib.request as req\
+from urllib.parse import urlparse\
+\
+# 
+\f1 \'b3\'d7\'c0\'cc\'b9\'f6\'bf\'a1\'bc\'ad
+\f0  
+\f1 \'b5\'a5\'c0\'cc\'c5\'cd\'b8\'a6
+\f0  
+\f1 \'b0\'cb\'bb\'f6
+\f0 \
+def get_api_result(keyword, display, start):\
+    url = "https://openapi.naver.com/v1/search/blog?query=" + keyword \\\
+          + "&display=" + str(display) \\\
+          + "&start=" + str(start)\
+    result = requests.get(urlparse(url).geturl(), \
+                          headers=\{"X-Naver-Client-Id":"63AIsyLSbobH0khFj6M5", "X-Naver-Client-Secret":"mUoKVPCYZn"\})\
+    return result.json()\
+\
+def call_and_print(keyword, page):\
+    json_obj = get_api_result(keyword, 100, page) #100
+\f1 \'c6\'e4\'c0\'cc\'c1\'f6\'b1\'ee\'c1\'f6
+\f0 \
+    #print (json_obj)\
+    for item in json_obj['items']:\
+        link =  item['link']\
+        links.append(link.replace("?Redirect=Log&amp;logNo=", "/"))\
+\
+keyword=input('
+\f1 \'b0\'cb\'bb\'f6\'b4\'dc\'be\'ee
+\f0  
+\f1 \'c0\'d4\'b7\'c2
+\f0 : ')\
+links=[]\
+call_and_print(keyword, 1)\
+print(links)\
+\
+text_prn=[]\
+f=open('/Users/hankiho/Desktop/'+keyword+'
+\f1 \'b0\'cb\'bb\'f6\'b0\'e1\'b0\'fa
+\f0 .txt','w', encoding='utf-8')\
+cnt=0\
+for url in links:\
+    try:\
+        #print(url)\
+        html=requests.get(url)\
+        soup_temp = bs(html.text, "html.parser")\
+        #print(soup_temp)\
+        area_temp = soup_temp.find(id='mainFrame')\
+        #print(area_temp)\
+        url_2 = area_temp.get('src')\
+        #print(url_2)\
+    \
+        url="https://blog.naver.com"+url_2\
+        res = req.urlopen(url)\
+        soup = bs(res, 'html.parser')\
+        #print(soup)\
+        \
+        texts=soup.select('p.se-text-paragraph.se-text-paragraph-align-')\
+        \
+        if len(texts)==0:\
+            texts=soup.findAll('p',\{'class':'se-text-paragraph se-text-paragraph-align-center'\})\
+            if len(texts)==0:\
+                texts=soup.findAll('p',\{'class':'se_textarea'\})\
+                if len(texts)==0:\
+                    texts=soup.findAll('p',\{'class':'center'\})\
+                    if len(texts)==0:\
+                        texts=soup.findAll('span')              \
+\
+        for prn in texts: \
+            txt=prn.text.replace('\\u200b','')\
+            txt=txt.replace('\\xa0\\n','')\
+            if txt!='':\
+                f.write(txt+'\\n')\
+                #text_prn.append(txt+"\\n")\
+                #print(text_prn)\
+        cnf=cnt+1\
+        \
+        \
+    except :\
+        cnt=cnt+1\
+        print(str(cnt)+'. 
+\f1 \'bf\'a1\'b7\'af
+\f0 ')\
+        pass\
+        \
+f.close()\
+print('
+\f1 \'c0\'db\'be\'f7\'c0\'cc
+\f0  
+\f1 \'c1\'be\'b7\'e1\'b5\'c7\'be\'fa\'bd\'c0\'b4\'cf\'b4\'d9
+\f0 .')\
+#print(text_prn)}

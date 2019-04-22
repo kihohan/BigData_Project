@@ -1,0 +1,303 @@
+{\rtf1\ansi\ansicpg949\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset129 AppleSDGothicNeo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 import pandas as pd\
+\
+df = open("/Users/hankiho/Desktop/
+\f1 \'b0\'f8\'b8\'f0\'c0\'fc
+\f0  
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'c0\'da\'b7\'e1
+\f0 /
+\f1 \'b3\'d7\'c0\'cc\'b9\'f6
+\f0 _
+\f1 \'ba\'ed\'b7\'ce\'b1\'d7
+\f0 _
+\f1 \'b3\'bb\'bf\'eb
+\f0 (
+\f1 \'bf\'a1\'be\'ee\'b5\'e5\'b7\'b9\'bc\'ad
+\f0  
+\f1 \'c3\'bc\'c7\'e8\'b4\'dc
+\f0 )
+\f1 \'b0\'cb\'bb\'f6\'b0\'e1\'b0\'fa
+\f0 .txt", 'r',encoding='utf-8').read()\
+#df = pd.read_excel('/Users/hankiho/Desktop/
+\f1 \'b0\'f8\'b8\'f0\'c0\'fc
+\f0  
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'c0\'da\'b7\'e1
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8\'b1\'d7\'b7\'a5
+\f0  _
+\f1 \'c7\'d8\'bd\'ac\'c5\'c2\'b1\'d7
+\f0 _
+\f1 \'c5\'eb\'c7\'d5
+\f0 .xlsx')\
+\
+import nltk\
+from konlpy.tag import Twitter; t = Twitter()\
+\
+df_str = str(df)\
+#df_text = str(lg['
+\f1 \'c1\'a6\'b8\'f1
+\f0 '])\
+\
+#
+\f1 \'c6\'af\'bc\'f6\'b9\'ae\'c0\'da\'bf\'cd
+\f0  
+\f1 \'bc\'fd\'c0\'da
+\f0  
+\f1 \'c1\'a6\'b0\'c5
+\f0 \
+import re\
+\
+def cleanText(readData):\
+    text = re.sub('[-=+,#/\\?:^$.@*\\"\uc0\u8251 ~&%
+\f1 \'a4\'fd
+\f0 !
+\f1 \'a1\'bb
+\f0 \\\\\'91|\\(\\)\\[\\]\\<\\>`\\'\'85
+\f1 \'a1\'b7
+\f0 ]', '', readData)\
+    return text\
+\
+def cleanNumber(readData):\
+    text = re.sub('[0-9]', '', readData)\
+    return text\
+\
+tokens_ko = t.morphs(cleanNumber(cleanText(df_str)))\
+stop_words = ['
+\f1 \'b0\'a1
+\f0 ','
+\f1 \'bf\'e4
+\f0 ','
+\f1 \'c0\'bb
+\f0 ','
+\f1 \'bc\'f6
+\f0 ','
+\f1 \'bf\'a1
+\f0 ','
+\f1 \'c1\'a6
+\f0 ','
+\f1 \'b8\'a6
+\f0 ','
+\f1 \'c0\'cc
+\f0 ','
+\f1 \'b5\'b5
+\f0 ','
+\f1 \'b4\'d0\'b3\'d7\'c0\'d3
+\f0 ','
+\f1 \'c0\'d4\'b4\'cf\'b4\'d9
+\f0 ','
+\f1 \'b0\'cb\'bb\'f6
+\f0 ','
+\f1 \'b5\'c8
+\f0 ',\
+              '
+\f1 \'c1\'c1
+\f0 ','
+\f1 \'b4\'c2
+\f0 ','
+\f1 \'b7\'ce
+\f0 ','
+\f1 \'c0\'b8\'b7\'ce
+\f0 ','
+\f1 \'b0\'cd
+\f0 ','
+\f1 \'c0\'ba
+\f0 ','
+\f1 \'b4\'d9
+\f0 ','
+\f1 \'b4\'cf\'b4\'d9
+\f0 ','
+\f1 \'b4\'eb
+\f0 ','
+\f1 \'b5\'e9
+\f0 ','
+\f1 \'c0\'cc\'b6\'f3
+\f0 ','
+\f1 \'b3\'d7
+\f0 ','n',\
+              '
+\f1 \'b5\'e9
+\f0 ','
+\f1 \'b5\'a5
+\f0 ','
+\f1 \'c0\'c7
+\f0 ','
+\f1 \'b6\'a7
+\f0 ','
+\f1 \'b0\'da
+\f0 ','
+\f1 \'b0\'ed
+\f0 ','
+\f1 \'b0\'d4
+\f0 ','
+\f1 \'b3\'d7\'bf\'e4
+\f0 ','
+\f1 \'c7\'d1
+\f0 ','
+\f1 \'c0\'cf
+\f0 ','
+\f1 \'c7\'d2
+\f0 ','\\n','r',\
+              '
+\f1 \'c7\'cf\'b4\'c2
+\f0 ','
+\f1 \'c1\'d6
+\f0 ','
+\f1 \'b7\'c1\'b0\'ed
+\f0 ','
+\f1 \'c0\'ce\'b5\'a5
+\f0 ','
+\f1 \'b0\'c5
+\f0 ','
+\f1 \'c1\'bb
+\f0 ','
+\f1 \'b4\'c2\'b5\'a5
+\f0 ','
+\f1 \'c0\'fc
+\f0 ','
+\f1 \'c0\'cc\'b6\'f3
+\f0 ','
+\f1 \'c7\'df
+\f0 ','
+\f1 \'c1\'d6\'b7\'c1
+\f0 ','t',\
+              '
+\f1 \'b9\'b9
+\f0 ','
+\f1 \'b1\'ee
+\f0 ','
+\f1 \'c0\'d6\'b4\'c2
+\f0 ','
+\f1 \'bd\'c0\'b4\'cf\'b4\'d9
+\f0 ','
+\f1 \'b4\'d9\'b8\'e9
+\f0 ','
+\f1 \'c7\'df
+\f0 ','
+\f1 \'c1\'d6\'b7\'c1
+\f0 ','
+\f1 \'b9\'ab\'c1\'f6
+\f0 ','
+\f1 \'c7\'d5\'b4\'cf\'b4\'d9
+\f0 ','
+\f1 \'bf\'a1\'bc\'ad
+\f0 ','\\\\','\\xa0'\
+              '
+\f1 \'c1\'f6
+\f0 ','
+\f1 \'c0\'d6
+\f0 ','
+\f1 \'b8\'f8
+\f0 ','
+\f1 \'c8\'c4
+\f0 ','
+\f1 \'c1\'df
+\f0 ','
+\f1 \'c1\'d9
+\f0 ','
+\f1 \'b0\'fa
+\f0 ','
+\f1 \'be\'ee\'b6\'b2
+\f0 ','
+\f1 \'b1\'e2\'ba\'bb
+\f0 ','
+\f1 \'bf\'a1\'bc\'ad
+\f0 ','
+\f1 \'c7\'d8
+\f0 ','
+\f1 \'b4\'dc\'be\'ee
+\f0 ','
+\f1 \'b6\'f3\'b0\'ed
+\f0 ','
+\f1 \'c7\'d5
+\f0 ','
+\f1 \'b0\'a1\'bf\'e4
+\f0 ','
+\f1 \'ba\'ce\'c5\'cd
+\f0 ']\
+\
+tokens_ko = [each_word for each_word in tokens_ko if each_word not in stop_words]\
+\
+ko = nltk.Text(tokens_ko)\
+ko.vocab().most_common(200) #
+\f1 \'bc\'fd\'c0\'da\'b4\'c0
+\f0  
+\f1 \'b8\'ee\'b0\'b3\'b8\'b8
+\f0  
+\f1 \'ba\'b8\'bf\'a9\'c1\'e0\'b6\'f3
+\f0 \
+\
+import pandas as pd\
+#df = pd.read_csv('/Users/hankiho/Desktop/
+\f1 \'b0\'f8\'b8\'f0\'c0\'fc
+\f0  
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'c0\'da\'b7\'e1
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8
+\f0 /
+\f1 \'c0\'c7\'b9\'cc\'c0\'d6\'b4\'c2
+\f0  
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8\'c7\'d8\'bd\'ac\'c5\'c2\'b1\'d7
+\f0 .csv')\
+df = pd.read_excel('/Users/hankiho/Desktop/
+\f1 \'b0\'f8\'b8\'f0\'c0\'fc
+\f0  
+\f1 \'c5\'a9\'b7\'d1\'b8\'b5
+\f0  
+\f1 \'c0\'da\'b7\'e1
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8
+\f0 /
+\f1 \'c0\'ce\'bd\'ba\'c5\'b8\'b1\'d7\'b7\'a5
+\f0  _
+\f1 \'c7\'d8\'bd\'ac\'c5\'c2\'b1\'d7
+\f0 _
+\f1 \'c5\'eb\'c7\'d5
+\f0 .xlsx')\
+\
+import matplotlib.pyplot as plt\
+from matplotlib import rc\
+\
+rc('font', family='AppleGothic')\
+plt.rcParams['axes.unicode_minus'] = False\
+\
+final_blue_red_bans = df.fillna('Empty')\
+df_list = final_blue_red_bans.values.tolist()\
+\
+from mlxtend.preprocessing import TransactionEncoder\
+from mlxtend.frequent_patterns import apriori\
+\
+te = TransactionEncoder()\
+te_ary = te.fit(df_list).transform(df_list)\
+df = pd.DataFrame(te_ary, columns=te.columns_) #
+\f1 \'c0\'a7\'bf\'a1\'bc\'ad
+\f0  
+\f1 \'b3\'aa\'bf\'c2\'b0\'c9
+\f0  
+\f1 \'ba\'b8\'b1\'e2
+\f0  
+\f1 \'c1\'c1\'b0\'d4
+\f0  
+\f1 \'b5\'a5\'c0\'cc\'c5\'cd\'c7\'c1\'b7\'b9\'c0\'d3\'c0\'b8\'b7\'ce
+\f0  
+\f1 \'ba\'af\'b0\'e6
+\f0 \
+\
+frequent_itemsets = apriori(df_apriori, min_support=0.05, use_colnames=True)\
+frequent_itemsets.head()\
+\
+from mlxtend.frequent_patterns import association_rules\
+association_rules(frequent_itemsets, metric = "confidence", min_threshold = 0.1) }

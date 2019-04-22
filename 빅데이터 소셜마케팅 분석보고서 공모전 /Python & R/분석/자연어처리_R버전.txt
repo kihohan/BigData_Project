@@ -1,0 +1,299 @@
+##data input##blog
+styler <- read_csv("C:/Users/seowoo/Documents/blog_styler.csv")
+air <- read_csv("C:/Users/seowoo/Documents/blog_air.csv")
+clothes <- read_csv("C:/Users/seowoo/Documents/blog_clothes.csv")
+
+##############
+
+# build corpus
+
+useSejongDic()
+useNIADic()
+
+stylerCps <- VCorpus(VectorSource(styler$본문요약본))
+stylerCps <- tm_map(stylerCps, removePunctuation)
+stylerCps <- tm_map(stylerCps, removeNumbers)
+stylerCps <- tm_map(stylerCps, stripWhitespace)
+stylerCps <- tm_map(stylerCps, stemDocument)
+stylerCps <- tm_map(stylerCps, PlainTextDocument)
+stylerCps <- tm_map(stylerCps, extractNoun)
+
+stylerCps <- TermDocumentMatrix(stylerCps)
+
+#사전 만들기
+dics <- c('sejong','woorimalsam')
+user_d <- data.frame(term=c('스타일러','에어드레서'), tag='ncn')
+buildDictionary(ext_dic= dics, user_dic = user_d, replace_usr_dic=F)
+usr_words <- get_dictionary('user_dic')
+
+
+#빈도 확인
+findFreqTerms(stylerCps, lowfreq = 60)
+
+termFq = rowSums(as.matrix(stylerCps))
+termFq = subset(termFq, termFq >70)
+termFq = sort(termFq, decreasing = T)
+termFq.df = data.frame(term=names(termFq), freq = termFq, stringsAsFactors = F)
+rownames(termFq.df) = NULL
+barplot(termFq.df$freq, main = "Terms", names.arg = termFq.df$term)
+
+####################
+#instagram
+
+
+head(insta$`0`)
+tmp = rbind(insta_air,insta_cloth,insta_sty)
+
+A=strsplit(tmp[1],' ')
+class(A)
+print(A)
+strs =''
+for(s in A){
+  str=grep('#',s,value=T)
+  strs = paste(str, strs, collapse = "")
+}
+print(str)
+paste0(strs[1],strs[2])
+class(strs)
+for (i in (0:961)){
+  lmp = strsplit(tmp[i],' ')
+  strs=''
+  for(s in lmp){
+    str=grep('#',s,value=T)
+    strs = paste(str, strs, collapse = "")
+  }
+  df[i] <- strs
+}
+
+head(tmp[2])
+lmp = list()
+for (i in (1:2995)){
+  lmp[i] = strsplit(tmp[i],'#')
+}
+############
+#샵 기준으로 단어 나눠서 하나의 리스트에 담기
+#담은 리스트를 또 다른 커다란 하나의 리스트에 담기
+
+df[[1]][1]
+lst=list()
+
+for(i in (1:961)){
+  lst[i]=strsplit(df[[i]][1],'#')
+}
+head(lst)
+library(arules)
+library(arulesViz)
+library(colorspace)
+install.packages('colorspace')
+insta1 = insta
+
+lst = as.list(insta)
+
+for (i in (1:2997)){
+  ss[i] = insta[i]
+}
+
+lst1=lst[1:50]
+rule1 <- apriori(lst1, parameter=list(support=0.5, confidence=0.5, minlen=1, maxlen=10, smax=1))
+rule2 <- apriori(lst, parameter=list(support=0.5, confidence=0.2, minlen=1, maxlen=10, smax=1),appearance=list(lhs='혼수가전',default='rhs'))
+rule3 <- apriori(lst, parameter=list(support=0.01, confidence=0.2, minlen=1, maxlen=10, smax=1),appearance=list(lhs='미세먼지',default='rhs'))
+rule3 <- apriori(lst, parameter=list(support=0.01, confidence=0.2, minlen=1, maxlen=10, smax=1),appearance=list(lhs='가전제품',default='rhs'))
+inspect(rule3)
+summary(rule2)
+??apriori
+
+##################
+#twitter
+
+Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_191')
+library(rJava)
+install.packages('base64enc')
+install.packages('ROAuth')
+install.packages('RCurl')
+
+library("twitteR")
+library("wordcloud")
+library("tm")
+library("KoNLP")
+library(httr)
+library('RCurl')
+library("base64enc")
+library('ROAuth')
+library(plyr)
+
+reqURL <- 'https://api.twitter.com/oauth/request_token'
+accessURL <- 'https://api.twitter.com/oauth/access_token'
+authURL <- 'https://api.twitter.com/oauth/authorize'
+
+consumer_key = "8lCNJnaCnGxCvJ6hXyUWewB5G"
+consumer_secret = "MdE8zF6erq60MPJsI0vi8u9n3FlbLXUkI3hcHPV3EJnWBp6MNS"
+access_token = "890949046092812288-yYcFI1LV2yA0X4JmVDdrTUQDNr0xJtX"
+access_secret = "pom5vXJlwiDDmC8nhrSzJ4NuwG3q7u6YwjPxtNOz72YZT"
+
+cred <- OAuthFactory$new(consumerKey=consumer_key,consumerSecret=consumer_secret,reqestURL='https://api.twitter.com/oauth/request_token',accessURL='https://api.twitter.com/oauth/access_token'
+                         ,authURL='https://api.twitter.com/oauth/authorize')
+cred$handshake(cainfo = system.file('CurlSSL','cacert.pem',package = 'RCurl'))
+setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+??OAuthFactory
+
+search_twitter_and_store
+keyword = enc2utf8('건조기')
+hot = searchTwitter(keyword, n=1000,resultType = 'recent')
+head(hot,3)
+
+useSejongDic()
+useNIADic()
+
+gg <- sapply(hot, function(x) x$getText())
+
+#create corpus
+gg_corpus <- Corpus(VectorSource(gg))
+
+#clean up
+gg_corpus <- tm_map(gg_corpus, content_transformer(tolower)) 
+gg_corpus <- tm_map(gg_corpus, removePunctuation)
+gg_corpus <- tm_map(gg_corpus, function(x)removeWords(x,stopwords()))
+wordcloud(gg_corpus)
+
+#######################
+date = rbind(blog$날짜,blog_air$날짜,blog_styler$날짜,blog_try$날짜)
+rm(date)
+
+date = gsub('7일 전','2019.02.14',date)
+date = gsub('6일 전','2019.02.15',date)
+date = gsub('5일 전','2019.02.16',date)
+date = gsub('4일 전','2019.02.17',date)
+date = gsub('3일 전','2019.02.18',date)
+date = gsub('2일 전','2019.02.19',date)
+date = gsub('어제','2019.02.20',date)
+
+count = table(date)
+plot(table(date))
+library(dplyr)
+
+#######################################
+###레몬테라ㅅ
+lete_air<- read_csv("C:/Users/seowoo/Downloads/lete_air.csv")
+lete_air = data.frame(title=lete_air$d,date=lete_air$dd,content=lete_air$asd,rep=lete_air$dsd)
+lete_air = lete_air[-1,]
+
+lete_styler <- read_csv("C:/Users/seowoo/Downloads/lete_styler.csv")
+lete_styler = data.frame(title=lete_styler$ff_2,date=lete_styler$ff_1,cont=lete_styler$fff,rep=lete_styler$ff)
+lete_styler = lete_styler[-1,]
+
+###공지###
+notice = '후기주의! 결혼업체 후기글,쪽지,메일등 신고시 업체광고판단 탈퇴됩니다. 업체 글작성, 홍보, 링크, 상호, 판매유도, 반복 후기, 비슷한글 반복등 금지 업체 자료, 업체 직간접후기등 광고 금지 무통보 이동,삭제,활동정지,탈퇴 결혼 업체와 동맹,협력,인증 없음 (메일,쪽지는 해당 업체의 무단 광고임)후기성광고, 결혼자료, 업체 부탁 광고등 주의해주세요! 탈퇴됩니다 관리자,스텝에 항의 및 허위글등 삼가 주세요 ! (회원님들 신고가 아주 많음)  +견적, 문의, 추천 등의 모든 질문글은 결혼준비 [Q&A]로 이용해주세요 +결혼준비[Q&A]에서는 질문외 청첩장, 웨딩홀 등 웨딩관련 모든후기글 금지 +(결혼관련 비광고.비홍보성) 후기글은 예비신부방을 이용해주세요 +이를 위반게시물은 무통보 이동/ 삭제, 반복.도배시 활동정지/ 탈퇴 ■스마트폰에서 레몬테라스 카페 PC화면처럼  ■ 레몬테라스 모바일/PC 통합공지 (클릭! 필독하세요)'
+notice <- gsub("\n", "", notice)
+notice <- gsub("\r", "", notice)
+notice <- gsub("[[:punct:]]", "", notice)
+notice <- gsub('■','',notice)
+notice
+notice_noun <- Map(extractNoun, notice)
+notice_noun <- unlist(notice_noun, use.name=F)
+
+notice1 = '홍보, 링크, 업체소개, 업체 영업, 판매, 판매유도등 상행위 금지 !'
+notice3 = '협력,인증업체등 없음.' 
+notice4= '할인등 혜택 후기,쪽지 메일도 탈퇴됨'
+notice7 ='업체 후기,광고 판단시 무통보 삭제, 탈퇴처리.'
+notice2 = '구매유도 금지 후기를 가장한 업체 광고 금지, 쪽지, 메일등 유도 광고 금지, 탈퇴됨'
+notice5 = '■ 레몬테라스 모바일/PC 통합공지 (클릭! 필독하세요)'
+notice6 = '■스마트폰에서 레몬테라스 카페 PC화면처럼'
+
+notice = c(notice1,notice2,notice3,notice4,notice5,notice6,notice7)
+
+#공지 삭제
+for (not in notice_noun){
+  lete_styler$cont = gsub(not,'',lete_styler$cont)
+}
+
+#정제
+
+library("wordcloud")
+library("tm")
+Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_191')
+library(rJava)
+library("KoNLP")
+
+#gsub
+lair_title = lete_air$title
+lsty_cont = lete_styler$cont
+lsty_rep = lete_styler$rep
+
+
+
+lsty_rep = strsplit(as.character(lsty_rep),'\r\n\t\t\t\t\t\t\t\t')
+
+lsty_cont <- gsub("\n", "", lsty_cont)
+lsty_cont <- gsub("\r", "", lsty_cont)
+lsty_cont <- gsub("[[:punct:]]", "", lsty_cont)
+lsty_cont <- gsub("[[:digit:]]", "", lsty_cont)
+lsty_cont <- gsub("■", "", lsty_cont)
+lsty_cont <- gsub("QA", "", lsty_cont)
+lsty_cont <- gsub('  ','',lsty_cont)
+lsty_cont <- gsub('\t','',lsty_cont)
+lsty_rep <- gsub('삭제된 댓글입니다','',lsty_rep)
+lsty_rep <- gsub('쪽지','',lsty_rep)
+
+
+lsty_rep <- na.omit(lsty_rep)
+lsty_cont <- na.omit(lsty_cont)
+
+lsty_cont_noun <- Map(extractNoun, lsty_cont)
+lsty_cont_noun <- lsty_cont_noun1
+lsty_cont_noun1 <- unlist(lsty_cont_noun, use.name=F)
+lsty_cont_noun <- gsub("[[:punct:]]","", lsty_cont_noun)
+lsty_cont_noun <- gsub("[A-Za-z]","", lsty_cont_noun)
+
+lsty_cont_noun <- Filter(function(x){nchar(x)>=2}, lsty_cont_noun)
+lsty_cont_noun[]
+
+count = data.frame(table(lsty_cont_noun[1]))
+count
+(count[rev(order(count$Freq)),])
+
+##
+lair_content = lete_air$content
+
+lair_content <- gsub("\n", "", lair_content)
+lair_content <- gsub("\r", "", lair_content)
+lair_content <- gsub("[[:punct:]]", "", lair_content)
+
+lair_content_noun <- Map(extractNoun, lair_content)
+lair_content_noun <- unlist(lair_content_noun, use.name=F)
+lair_content_noun <- gsub("[[:punct:]]","", lair_content_noun)
+lair_content_noun <- Filter(function(x){nchar(x)>=2}, lair_content_noun)
+count = data.frame(table(lair_content_noun))
+count[rev(order(count$Freq)),]
+
+head(lair_content_noun)
+
+for(n in notice_noun){
+  lair_content_noun <- gsub(n,'',lair_content_noun)
+}
+
+##사전 만들기
+
+advice = c('조언','고민','생각','궁금','도움','판단','주세요','지혜','알아보','선택','고수','부탁','선물','의견')
+review = c('리뷰','후기','추천','비추','정보','이용','사용','별로','자랑')
+wedding = c('혼수','가전','장만','예비신부','예신','청첩장','신랑','이사','신혼')
+budget = c('견적','예산','가격','금액','할인','구입','렌탈','매장','백화점','비용','결제','돈','행사','공구')
+design = c('이쁘','쁘','예쁘','고급스','인테리어','고급','분위기','스타일','이미지','컨셉','블랙','미러','색상')
+place = c('집','거실','방','공간','곳','설치','안방','드레스','룸','분위기','드레스룸','아파트','평','어디','보관','벽','베란다')
+use = c('실용','기능','활용','시간','드라이','건조')
+sp =c('아기','남편','애','애기')
+cloth = c('교복','정장','바지','패딩','양복','코트')
+devi = c('세탁기','건조기','청소기','에어컨','티비','텔레비전','TV','트윈워시','노트북','데스크탑','식기세척기')
+
+cate = c(advice, review, wedding, budget, design, place, use, sp, cloth, devi)
+
+lsty_cont_noun = lsty_cont_noun1
+
+for (i in (1:10)){
+  for (cat in cate){
+    for (A in cat){
+      lsty_cont_noun[i] = gsub(A,'',lsty_cont_noun[i])
+    }
+  }
+}
+
+
