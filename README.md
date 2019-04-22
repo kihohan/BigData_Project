@@ -1,7 +1,7 @@
 # Prize_Winning_BigData_Contests
 
 제5회 해양수산 공공,빅데이터 활용 경진대회  / 우수상 / 주관: 해양수산부
-- 해양조건 데이터와 해파리 출몰 데이터를 이용하고 로지스틱 알고리즘을 사용하여 해파리 출몰 예측모델을 제시
+- 해양조건 데이터, 해파리 출몰 데이터를 정제하고, 로지스틱 알고리즘을 사용하여 해파리 출몰 예측모델을 제시
 
 링크: http://www.suhyupnews.co.kr/news/articleView.html?idxno=21668
 
