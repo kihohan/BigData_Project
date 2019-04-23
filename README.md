@@ -11,6 +11,6 @@
 링크: http://www.hellot.net/new_hellot/magazine/magazine_read.html?code=201&sub=004&idx=43740
 
 빅데이터 소셜마케팅 분석보고서 공모전 / 대상 / 주관: (주)한국경제신문, 한국정보화진흥원
-- 네이버 포털, 인스타그램, 쇼핑리뷰 등의 크롤러를 개발하여 데이터를 수집하고, NLP와 Association Rules알고리즘을 이용하여 데이터를 기반으로 마케팅 방안을 제시
+- 네이버 포털, 인스타그램, 쇼핑리뷰 등의 크롤러를 개발하여 데이터를 수집하고, NLP,Sklearn,Association Rules알고리즘 등을 이용하여 데이터를 기반으로 마케팅 방안을 제시
 
 링크: https://www.hankyung.com/society/article/2019030789051
