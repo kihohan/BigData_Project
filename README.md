@@ -15,3 +15,12 @@
 - 네이버 포털, 인스타그램, 쇼핑리뷰 등의 크롤러를 개발하여 데이터를 수집하고, NLP, Sklearn, Association Rules알고리즘 등을 이용하여 데이터를 기반으로 마케팅 방안을 제시
 
 링크: https://www.hankyung.com/society/article/2019030789051
+
+기상청 빅데이터 콘테스트  / 참가 / 주관: 기상청
+
+- 빅데이터 분석을 통한 편의점 추천 시스템 제시
+
+
+Korea Clinical Datathon 2019  / 입선 / 주관: KONECT, SNUH, KDDF, MBRC
+
+- 현직 의사들과 아주대학교 CDM데이터를 활용하여 COPD예측모델을 만들고 영향을 주는 Feature탐색 / IRB 심의 후 논문 기재예정
