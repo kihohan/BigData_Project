@@ -1,0 +1,7 @@
+wave_height,wave_speed,wind_speed,wind_direction,wave_height
+1,2,5,5,2
+3,3,7,5,3
+,,6,4,4
+,,8,5,5
+,,9,,5
+,,7,,6
