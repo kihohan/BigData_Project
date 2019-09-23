@@ -23,4 +23,4 @@
 
 ### Korea Clinical Datathon 2019  / 입선 / 주관: KONECT, SNUH, KDDF, MBRC
 
-- 현직 의사들과 아주대학교 CDM데이터를 활용하여 COPD예측모델 제시 / IRB 심의 후 논문 기재예정
+- 현직 의사들과 아주대학교 CDM데이터를 활용하여 COPD 예측모델 제시 / IRB 심의 후 논문 기재예정
