@@ -24,6 +24,6 @@
 - 빅데이터 분석을 통한 편의점 발주량 추천 시스템 제시
 
 
-### Korea Clinical Datathon 2019  / 입선 / 주관: KONECT, SNUH, KDDF, MBRC / 201909
+### Korea Clinical Datathon 2019  / 입선 / 주관: KONECT, SNUH, KDDF, MBRC / 20190920 ~20190922
 
 - 서울대 의대에서 3일간 현직 의사들과 아주대학교 CDM데이터를 활용하여 COPD 예측모델 제시 / IRB 심의 후 논문 기재예정
