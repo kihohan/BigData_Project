@@ -1,3 +1,4 @@
+## - Leaderboard
 ![Score_board](https://user-images.githubusercontent.com/40457277/71368300-ea32e380-25ea-11ea-8183-eadea39ff594.png)
 
 ## 1. 개요
