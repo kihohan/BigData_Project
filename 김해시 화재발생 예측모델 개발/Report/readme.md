@@ -1,3 +1,5 @@
+![Score_board](https://user-images.githubusercontent.com/40457277/71368300-ea32e380-25ea-11ea-8183-eadea39ff594.png)
+
 ## 1. 개요
 - 경상남도의 데이터를 이용하여 김해시의 화재발생 여부를 예측하는 문제. 
 - Metric은 f1_Score로 1등은 0.59187 글쓴이는 0.50207로 9등을 차지하였다. (300팀이상 참여)
