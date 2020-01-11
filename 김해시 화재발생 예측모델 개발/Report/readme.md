@@ -23,5 +23,3 @@
 4) gridsearch,kfold 기법이 시간에 비해 좋은 성능을 내진 못하는거 같다. 오히려 feature engineering을 한개 더 하는게 시간상 효율적이다.
 5) predict_proba에 threshold를 조절하여 예측을 확률을 변경하는 기법을 시도해 보왔으니 좋은 성능을 내진 못했다.
 6) kaggle과 같은 submission 제출 과제는 실제 test셋과 비슷한 validation셋 구축이 제일 중요한거 같다. 하지만 이 방법이 쉽지않다. ***
-## 5. 상위 솔루션
-- 아직 공개되지않았다.
