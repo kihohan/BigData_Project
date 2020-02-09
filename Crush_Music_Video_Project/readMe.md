@@ -1,4 +1,4 @@
-1. Structure
+1. Task structure
 
 ![스크린샷 2020-02-09 오후 4 38 07](https://user-images.githubusercontent.com/40457277/74098358-9bb9b400-4b5a-11ea-853d-3e48f92910f5.png)
 
