@@ -8,6 +8,3 @@
 
 
 3. 결과
-
-
-[![Video Label](http://img.youtube.com/vi/UX_dBMB8xKI/0.png)](https://youtu.be/UX_dBMB8xKI=0s) Video Label
