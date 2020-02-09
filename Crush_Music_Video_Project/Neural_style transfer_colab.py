@@ -141,7 +141,7 @@ for picture_num in tqdm_pic:
           result_prefix = 'transfer_' + picture_num.split('/')[-1].split('.')[0]
           fname = result_prefix + '.png'
           save_img(fname, img)
-    except: # gpu 할당으로 실패한 사진 파일 목록을 출력합니다.
+    except: # 제한된 gpu 할당으로 실패한 사진 파일 목록을 출력합니다.
         print (picture_num)
         fail_list.append(picture_num)
 
