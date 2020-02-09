@@ -1,6 +1,6 @@
 1. 작업 구조
 
-![스크린샷 2020-02-09 오후 4 05 43](https://user-images.githubusercontent.com/40457277/74098028-7f1b7d00-4b56-11ea-93df-1f6b92663497.png)
+![스크린샷 2020-02-09 오후 4 32 58](https://user-images.githubusercontent.com/40457277/74098300-e71f9280-4b59-11ea-9c43-76b78fbffc4b.png)
 
 2. 이미지 래퍼런스
 
