@@ -31,6 +31,8 @@
 
 - 경남지역의 공공데이터를 통한 김해시 화재 발생 예측 모델 개발
 
+링크: https://compas.lh.or.kr/
+
 ### 8) Crush_Music_Video_Project / Neural style transfer을 이용한 이미지 변환/ 20191230 ~20200101
 
 - 크러쉬 뮤직비디오 일부 장면을 VGG16을 이용한 Neural style transfer 적용
