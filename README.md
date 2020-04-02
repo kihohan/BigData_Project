@@ -35,6 +35,6 @@
 
 ### 8) Crush_Music_Video_Project / Neural style transfer을 이용한 이미지 변환/ 20191230 ~20200101
 
-- 크러쉬 뮤직비디오 일부 장면을 VGG16을 이용한 Neural style transfer 적용
+- 크러쉬 뮤직비디오 일부 장면을 VGG19을 이용한 Neural style transfer 적용
 
 링크: https://www.youtube.com/watch?v=2OEdoFGp140
